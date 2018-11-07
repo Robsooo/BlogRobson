@@ -1,0 +1,59 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 15vh;
+    border: solid 2px black;
+    background-color:  #999999;
+   
+}
+
+.home {
+    text-decoration: none;
+    color: black;
+    font-size: 3vh;
+}
+
+select {
+    font-size: 3vh;
+    border: none;
+    background-color:  #999999;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-content: space-around;
+    align-items: center;
+    width: 100%;
+}
+
+.post {
+    border: solid 1px black;
+    padding: 1%;
+    text-align: justify;
+    width: 80vw;
+}
+
+h1 {
+    text-align: center;
+}
+
+.dados {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    font-size: .75em;
+}
+
+p {
+    font-size: 1.2em;
+}
