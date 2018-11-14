@@ -1,6 +1,6 @@
 const select = document.querySelector("select")
 const main = document.querySelector("main")
-const meu_blog = document.querySelector(".home")
+const meu_blog = document.querySelector("span")
 
 const xhr = new XMLHttpRequest()
 xhr.open("GET", "http://localhost/RestfulPOO/rest_blog/api/categoria/read.php");
@@ -18,6 +18,11 @@ xhr.onreadystatechange=function() {
         }
     }
 }
+
+meu_blog.addEventListener('click', () => {
+    main.innerHTML = ""
+    getPosts()
+})
 
 select.addEventListener('change', ev => {
     if(ev.target.selectedIndex == 0) return

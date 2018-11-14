@@ -16,10 +16,11 @@ header {
     background-color:  #247ba0;
 }
 
-.home {
+span {
     text-decoration: none;
     color: white;
     font-size: 4vh;
+    cursor: pointer;
 }
 
 select {
