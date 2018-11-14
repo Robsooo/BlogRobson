@@ -20,7 +20,10 @@ xhr.onreadystatechange=function() {
 }
 
 select.addEventListener('change', ev => {
-    getPosts(null,select.value)
+    if(ev.target.selectedIndex == 0) return
+
+    getPosts(null, select.value)
+    
     main.innerHTML = ""
 })
 
@@ -30,7 +33,6 @@ async function getPosts(id,idcategoria){
         url+='?id='+id
     }else if(idcategoria!=null){
         url+='?idcategoria='+idcategoria
-        
     }
     
     let request = await fetch(url)
