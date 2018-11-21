@@ -1,5 +1,6 @@
 const select = document.querySelector("select")
 const main = document.querySelector("main")
+const header = document.querySelector("header")
 const meu_blog = document.querySelector("span")
 
 const xhr = new XMLHttpRequest()
@@ -26,7 +27,7 @@ meu_blog.addEventListener('click', () => {
 
 select.addEventListener('change', ev => {
     if(ev.target.selectedIndex == 0) return
-
+    
     getPosts(null, select.value)
     
     main.innerHTML = ""
@@ -42,7 +43,7 @@ async function getPosts(id,idcategoria){
     
     let request = await fetch(url)
     let resposta = await request.json()
-
+    
     resposta.forEach(post => {
         const div_post = document.createElement("div")
         div_post.className = "post"
@@ -63,9 +64,50 @@ async function getPosts(id,idcategoria){
         div_post.appendChild(div_data)
         div_post.appendChild(p)
         main.appendChild(div_post)
-    });
+    })
+}
+
+async function getCurrentWeather(lat, lon) {
+    const div_tempo = document.createElement("div")
+    div_tempo.className = "meteorologia"
+    header.appendChild(div_tempo)
+
+    let url = "http://api.openweathermap.org/data/2.5/weather?lat="+ lat +"&lon=" + lon +"&units=metric&lang=pt&APPID=c144ba4eaa5f0aebc01c661169701dc7"
+    
+    let request = await fetch(url)
+    let previsao = await request.json()
+    console.log(previsao)
+    
+    var tempo = previsao.weather[0].main
+    console.log(tempo)
+    
+    const clima = document.createElement("div")
+    clima.className = "clima"
+    const img = document.createElement("img")
+
+
+    const local = document.createElement("div")
+    local.className = "local"
+
+    div_tempo.appendChild(clima)
+    div_tempo.appendChild(local)
+    
+    clima.innerText = previsao.main.temp + "°" 
+    local.innerText = previsao.name + ", " + previsao.sys.country
+    
+    if(tempo == "Clouds") {
+        img.src = 'images/weather-icons/002-cloud.png'
+        clima.appendChild(img)
+    } else if(tempo == "Clear") {
+        img.src = 'images/weather-icons/007-cloudy-2.png'
+       clima.appendChild(img)
+    }
+
+    // console.log(navigator.geolocation)
 }
 
 (async () => {
     getPosts()
+    getCurrentWeather('-26.9911', '-48.6352')
+    // getCurrentWeather('39.03385', '125.75432') 
 })()

@@ -30,6 +30,32 @@ select {
     color: white;
 }
 
+
+.metereologia, .clima, .local {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 2vh;
+}
+
+.metereologia {
+    flex-direction: column;
+}
+
+.clima{
+    flex-direction: row;
+}
+
+img {
+    width: 8%;
+    height: 8%;
+}
+
+.local{
+    flex-direction: row;
+}
+
 main {
     display: flex;
     flex-direction: column;
