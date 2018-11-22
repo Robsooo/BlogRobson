@@ -102,12 +102,21 @@ async function getCurrentWeather(lat, lon) {
         img.src = 'images/weather-icons/007-cloudy-2.png'
        clima.appendChild(img)
     }
+}
 
-    // console.log(navigator.geolocation)
+function showLocation(position) {
+    const lat = position.coords.latitude
+    const lon = position.coords.longitude
+    getCurrentWeather(lat, lon)
 }
 
 (async () => {
     getPosts()
-    getCurrentWeather('-26.9911', '-48.6352')
-    // getCurrentWeather('39.03385', '125.75432') 
+    if(navigator.geolocation) {
+        const geolocation = navigator.geolocation
+        geolocation.getCurrentPosition(showLocation)
+    }  else {
+        alert("Seu navegador não tem a API de geolocalização :(")
+        getCurrentWeather('-26.9911', '-48.6352')
+    }
 })()
